@@ -1,13 +1,18 @@
-name: Publication Article Quotidienne
+name: Publication Article Tri-hebdomadaire
+
 on:
   schedule:
-    # Exécution tous les 2 jours à 7h00 UTC (8h00 heure de Paris en hiver)
-    - cron: '0 7 */2 * *'
+    # Exécution 3 fois par semaine : lundi, mercredi et vendredi à 7h00 UTC (8h00 heure de Paris en hiver)
+    - cron: '0 7 * * 1'  # Lundi
+    - cron: '0 7 * * 3'  # Mercredi
+    - cron: '0 7 * * 5'  # Vendredi
   
   # Permet aussi de lancer manuellement depuis l'interface GitHub
   workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
   publier-article:
     runs-on: ubuntu-latest
